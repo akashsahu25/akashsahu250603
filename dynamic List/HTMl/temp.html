@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Goku Animation Effect</title>
+    <style>
+        /* Body ko full screen aur dark background diya hai */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Yeh main container hai jisme background image lagegi */
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('goku.jpg') 
+            background-size: cover;
+            opacity: 0.3; /* Background ko thoda light rakha hai taaki animation dikhe */
+            z-index: 1;
+        }
+
+        /* Yeh wo moving person (Goku) image hai */
+        .moving-goku {
+            position: absolute;
+            width: 300px; /* Aap size adjust kar sakte hain */
+            height: auto;
+            z-index: 10;
+            animation: moveAround 8s infinite ease-in-out;
+        }
+
+        /* Animation logic: Top-Left -> Top-Right -> Bottom-Right -> Bottom-Left -> Center */
+        @keyframes moveAround {
+            0% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            20% {
+                top: 10%;
+                left: 10%;
+                transform: translate(0, 0) scale(0.8);
+            }
+            40% {
+                top: 10%;
+                left: 80%;
+                transform: translate(0, 0) scale(0.8);
+            }
+            60% {
+                top: 70%;
+                left: 80%;
+                transform: translate(0, 0) scale(0.8);
+            }
+            80% {
+                top: 70%;
+                left: 10%;
+                transform: translate(0, 0) scale(0.8);
+            }
+            100% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-container"></div>
+
+    <img src="goku.jpg" alt="Goku" class="moving-goku">
+
+</body>
+</html>

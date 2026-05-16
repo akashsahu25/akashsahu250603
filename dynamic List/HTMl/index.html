@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic list - Frontend Only</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <div id="FormDiv">
+        <form>
+            <label> Name : </label>
+            <input type="text" id="Name">
+            <label>Mail :</label>
+            <input type="text" id="Mail">
+            <label> Age : </label>
+            <input type="text" id="Age">
+            <button type="button" onclick="handleForm()"> Add </button>
+        </form>
+
+        <div id="AddDataList">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+    
+        let userDataStore = [];
+
+        function handleForm() {
+            const nameValue = document.getElementById("Name").value;
+            const mailValue = document.getElementById("Mail").value;
+            const ageValue = document.getElementById("Age").value;
+
+            if(nameValue === "" || mailValue === "" || ageValue === "") {
+                alert("Please fill all fields");
+                return;
+            }
+
+
+            const newUser = {
+                name: nameValue,
+                mail: mailValue,
+                age: ageValue
+            };
+
+          
+            userDataStore.push(newUser);
+
+            displayData();
+
+            clearInputs();
+        }
+
+        function displayData() {
+            const tableBody = document.getElementById("tableBody");
+    
+            tableBody.innerHTML = "";
+
+            userDataStore.forEach((user) => {
+           
+                let row = tableBody.insertRow();
+              
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+
+                cell1.innerText = user.name;
+                cell2.innerText = user.mail;
+                cell3.innerText = user.age;
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById("Name").value = "";
+            document.getElementById("Mail").value = "";
+            document.getElementById("Age").value = "";
+        }
+    </script>
+
+</body>
+</html>
