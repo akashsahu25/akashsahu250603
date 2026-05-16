@@ -1,83 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    
+  
     <title>Goku Animation Effect</title>
     <style>
-        /* Body ko full screen aur dark background diya hai */
+      
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            background-color: #000;
+            background: url('goku.jpg') no-repeat center center; 
+            background-size: cover;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Yeh main container hai jisme background image lagegi */
-        .background-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('goku.jpg') 
-            background-size: cover;
-            opacity: 0.3; /* Background ko thoda light rakha hai taaki animation dikhe */
-            z-index: 1;
+        .center-box {
+            width: 150px;
+            height: 380px;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            z-index: 5; 
         }
 
-        /* Yeh wo moving person (Goku) image hai */
         .moving-goku {
-            position: absolute;
-            width: 300px; /* Aap size adjust kar sakte hain */
-            height: auto;
-            z-index: 10;
-            animation: moveAround 8s infinite ease-in-out;
+            position: fixed; 
+            width: 150px;
+            height: 380px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            z-index: 10; 
+            animation: moveAndRotate 10s infinite linear; 
         }
 
-        /* Animation logic: Top-Left -> Top-Right -> Bottom-Right -> Bottom-Left -> Center */
-        @keyframes moveAround {
+      
+        @keyframes moveAndRotate {
+          
             0% {
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%);
             }
+          
             20% {
-                top: 10%;
-                left: 10%;
-                transform: translate(0, 0) scale(0.8);
+                top: 220px; 
+                left: 95px; 
+                transform: translate(-50%, -50%);
             }
+         
             40% {
-                top: 10%;
-                left: 80%;
-                transform: translate(0, 0) scale(0.8);
+                top: 220px;
+                left: calc(100% - 95px); 
+                transform: translate(-50%, -50%);
             }
+          
             60% {
-                top: 70%;
-                left: 80%;
-                transform: translate(0, 0) scale(0.8);
+                top: calc(100% - 220px);
+                left: calc(100% - 95px);
+                transform: translate(-50%, -50%);
             }
+          
             80% {
-                top: 70%;
-                left: 10%;
-                transform: translate(0, 0) scale(0.8);
+                top: calc(100% - 220px);
+                left: 95px;
+                transform: translate(-50%, -50%);
             }
+         
             100% {
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-container"></div>
+    <!-- Black Div -->
+    <div class="center-box"></div>
 
-    <img src="goku.jpg" alt="Goku" class="moving-goku">
+    <!-- Goku Image (Div ke bahar hai par center me perfectly fit hogi) -->
+    <img src="gokuOnly.jpg" alt="Goku" class="moving-goku">
 
 </body>
 </html>
